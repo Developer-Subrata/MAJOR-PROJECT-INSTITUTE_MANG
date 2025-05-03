@@ -9,9 +9,10 @@ import LoginPage from './pages/LoginPage';
 import AdminRegisterPage from './pages/admin/AdminRegisterPage';
 import ChooseUser from './pages/ChooseUser';
 
+
 const App = () => {
   const { currentRole } = useSelector(state => state.user);
-
+console.log("")
   return (
     <Router>
       {currentRole === null &&
