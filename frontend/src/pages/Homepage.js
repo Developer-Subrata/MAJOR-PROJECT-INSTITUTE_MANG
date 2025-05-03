@@ -19,7 +19,7 @@ import { MdSchool, MdGroups, MdAssessment, MdChat } from 'react-icons/md';
 // Import diverse professional images
 import logo from '../assets/img2.png';
 import HeroImage from "../assets/classroom.png";
-import CampusImage from "../assets/institution-background1.jpg";
+import CampusImage from "../assets/institution-background1.png";
 import ClassroomImage from "../assets/backg.jpg";
 import TechImage from "../assets/classroom.png";
 import GraduationImage from "../assets/backg.jpg";
@@ -217,7 +217,7 @@ const Homepage = () => {
                   >
                     {slide.cta}
                   </Button>
-                  <Button
+                  {/* <Button
                     variant="outlined"
                     color="inherit"
                     component={Link}
@@ -225,7 +225,7 @@ const Homepage = () => {
                     size={isMobile ? 'medium' : 'large'}
                   >
                     Explore Demo
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@ const Homepage = () => {
                   >
                     Login
                   </LightPurpleButton>
-                  <Button
+                  {/* <Button
                     variant="outlined"
                     color="primary"
                     component={Link}
@@ -289,7 +289,7 @@ const Homepage = () => {
                     size={isMobile ? 'medium' : 'large'}
                   >
                     Login as Guest
-                  </Button>
+                  </Button> */}
                 </div>
                 <Typography variant="body2" className="register-text">
                   Don't have an account?{' '}
