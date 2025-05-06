@@ -174,10 +174,11 @@ const Homepage = () => {
               style={{
                 color: 'black',
                 fontSize: '1.5rem',
-                fontWeight: '700'
+                fontWeight: '700',
+                fontFamily: 'cursive'
               }}
             >
-              InstitutePro
+              CampusCore
             </span>
           </a>
         </div>
