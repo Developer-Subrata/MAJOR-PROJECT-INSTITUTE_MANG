@@ -57,34 +57,40 @@ const Complain = require('../models/complainSchema.js');
 
 const adminRegister = async (req, res) => {
     try {
-        const admin = new Admin({
-            ...req.body
-        });
-
         const existingAdminByEmail = await Admin.findOne({ email: req.body.email });
         const existingSchool = await Admin.findOne({ schoolName: req.body.schoolName });
 
         if (existingAdminByEmail) {
-            res.send({ message: 'Email already exists' });
+            return res.status(400).json({ message: 'Email already exists' });
         }
-        else if (existingSchool) {
-            res.send({ message: 'School name already exists' });
+
+        if (existingSchool) {
+            return res.status(400).json({ message: 'School name already exists' });
         }
-        else {
-            let result = await admin.save();
-            result.password = undefined;
-            res.send(result);
-        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(req.body.password, salt);
+
+        const admin = new Admin({
+            ...req.body,
+            password: hashedPass
+        });
+
+        const result = await admin.save();
+        result.password = undefined;
+        res.status(201).json(result);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ error: 'Internal server error', details: err });
     }
 };
+
 
 const adminLogIn = async (req, res) => {
     if (req.body.email && req.body.password) {
         let admin = await Admin.findOne({ email: req.body.email });
         if (admin) {
-            if (req.body.password === admin.password) {
+            const isMatch = await bcrypt.compare(req.body.password, admin.password);
+            if (isMatch) {
                 admin.password = undefined;
                 res.send(admin);
             } else {

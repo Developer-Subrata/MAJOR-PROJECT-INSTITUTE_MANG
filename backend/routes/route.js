@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const {forgotPassword}=require("../controllers/forgotPassword.js")
+const {resetPassword}= require("../controllers/resetPassword.js")
 
 // const { adminRegister, adminLogIn, deleteAdmin, getAdminDetail, updateAdmin } = require('../controllers/admin-controller.js');
 
@@ -24,6 +26,11 @@ const {
     removeStudentAttendance } = require('../controllers/student_controller.js');
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
+
+//forgot-password
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password/:token', resetPassword);
+
 
 // Admin
 router.post('/AdminReg', adminRegister);

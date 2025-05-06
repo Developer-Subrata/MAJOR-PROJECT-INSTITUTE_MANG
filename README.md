@@ -5,7 +5,7 @@
 <h3 align="center">
 Streamline school management, class organization, and add students and faculty.<br>
 Seamlessly track attendance, assess performance, and provide feedback. <br>
-Access records, view marks, and communicate effortlessly.
+Access records, view marks, and communicate effortlessly. ######
 </h3>
 
 # About
