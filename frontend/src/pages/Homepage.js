@@ -175,7 +175,7 @@ const Homepage = () => {
                 color: 'black',
                 fontSize: '1.5rem',
                 fontWeight: '700',
-                fontFamily: 'cursive'
+                fontFamily: 'Inter, sans-serif'
               }}
             >
               CampusCore
