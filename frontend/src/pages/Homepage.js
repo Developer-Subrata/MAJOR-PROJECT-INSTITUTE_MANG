@@ -174,10 +174,11 @@ const Homepage = () => {
               style={{
                 color: 'black',
                 fontSize: '1.5rem',
-                fontWeight: '700'
+                fontWeight: '700',
+                fontFamily: 'Inter, sans-serif'
               }}
             >
-              InstitutePro
+              CampusCore
             </span>
           </a>
         </div>
@@ -264,7 +265,7 @@ const Homepage = () => {
             <Grid item xs={12} md={6} order={isMobile ? 2 : 1}>
               <div className="content-box">
                 <Typography variant={isMobile ? 'h3' : 'h2'} className="section-title">
-                  Welcome to <span>InstitutePro</span>
+                  Welcome to <span>CampusCore</span>
                 </Typography>
                 <Typography variant="body1" className="section-text">
                   Our comprehensive Institute Management System provides all the tools you need to
@@ -363,7 +364,7 @@ const Homepage = () => {
             <Grid item xs={12} md={4}>
               <div className="footer-brand">
                 <Typography variant="h4" className="brand-name">
-                  InstitutePro
+                CampusCore
                 </Typography>
                 <Typography variant="body2" className="brand-tagline">
                   Comprehensive solutions for modern educational institutions
@@ -417,7 +418,7 @@ const Homepage = () => {
                 </Button>
               </div>
               <Typography variant="body2" className="copyright">
-                © {new Date().getFullYear()} InstitutePro. All rights reserved.
+                © {new Date().getFullYear()} CampusCore. All rights reserved.
               </Typography>
             </Grid>
           </Grid>
