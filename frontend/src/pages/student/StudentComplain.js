@@ -72,15 +72,21 @@ const StudentComplain = () => {
                     <Paper elevation={3}
                         sx={{
                             borderRadius: 4,
-                            p: 5
+                            p: 5,
+                            backgroundColor: 'rgba(255, 255, 255, 0.25)', // semi-transparent white
+                            backdropFilter: 'blur(10px)',                 // blur effect
+                            WebkitBackdropFilter: 'blur(10px)',           // Safari support
+                            border: '1px solid rgba(255, 255, 255, 0.3)',  // optional soft border
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)', // nice glassy shadow
+
                         }}
                     >
                         <Typography variant="h4" align="center" gutterBottom
                             sx={{
                                 fontWeight: 'bold',
                                 fontFamily: 'Georgia, serif',
-                                mt: 0,      
-                                mb: 2       
+                                mt: 0,
+                                mb: 2
                             }}
                         >
                             COMPLAIN
