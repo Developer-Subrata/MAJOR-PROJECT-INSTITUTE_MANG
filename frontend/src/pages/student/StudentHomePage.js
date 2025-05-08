@@ -133,4 +133,4 @@ const Data = styled(CountUp)`
 
 
 
-export default StudentHomePage
+export default StudentHomePage;
