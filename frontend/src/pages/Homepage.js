@@ -15,7 +15,6 @@ import { LightPurpleButton } from '../components/buttonStyles';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { MdSchool, MdGroups, MdAssessment, MdChat } from 'react-icons/md';
 
-
 // Import diverse professional images
 import logo from '../assets/img2.png';
 import HeroImage from "../assets/classroom.png";
@@ -147,10 +146,10 @@ const Homepage = () => {
             zIndex: 100,
             display: 'flex',
             alignItems: 'center',
-            transition: 'all 0.3s ease', // For smooth transition of background, padding, etc.
-            backgroundColor: 'white', // You can change it if you want to add a background color
+            transition: 'all 0.3s ease',
+            backgroundColor: 'white',
             opacity: 1,
-            animation: 'fadeIn 0.5s ease-out' // Custom animation for fade-in effect
+            animation: 'fadeIn 0.5s ease-out'
           }}
         >
           <a href="/"
@@ -183,7 +182,6 @@ const Homepage = () => {
           </a>
         </div>
 
-
         <div className="carousel">
           {slides.map((slide, index) => (
             <div
@@ -197,7 +195,7 @@ const Homepage = () => {
               <img
                 src={slide.image}
                 alt={slide.alt}
-                loading={index === 0 ? 'eager' : 'lazy'} // Optimize loading
+                loading={index === 0 ? 'eager' : 'lazy'}
               />
               <div className="overlay"></div>
               <div className="slide-content">
@@ -218,15 +216,6 @@ const Homepage = () => {
                   >
                     {slide.cta}
                   </Button>
-                  {/* <Button
-                    variant="outlined"
-                    color="inherit"
-                    component={Link}
-                    to="/chooseasguest"
-                    size={isMobile ? 'medium' : 'large'}
-                  >
-                    Explore Demo
-                  </Button> */}
                 </div>
               </div>
             </div>
@@ -282,15 +271,6 @@ const Homepage = () => {
                   >
                     Login
                   </LightPurpleButton>
-                  {/* <Button
-                    variant="outlined"
-                    color="primary"
-                    component={Link}
-                    to="/chooseasguest"
-                    size={isMobile ? 'medium' : 'large'}
-                  >
-                    Login as Guest
-                  </Button> */}
                 </div>
                 <Typography variant="body2" className="register-text">
                   Don't have an account?{' '}
@@ -364,11 +344,7 @@ const Homepage = () => {
             <Grid item xs={12} md={4}>
               <div className="footer-brand">
                 <Typography variant="h4" className="brand-name">
-<<<<<<< HEAD
                   CampusCore
-=======
-                CampusCore
->>>>>>> be1f1d49447acc8eeca940c7c0976d2e868107cf
                 </Typography>
                 <Typography variant="body2" className="brand-tagline">
                   Comprehensive solutions for modern educational institutions
@@ -489,15 +465,6 @@ const HeroSection = styled.div`
       left: 5%;
       width: 90%;
     }
-    @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
   }
 
   .slide-content h1 {
@@ -651,17 +618,18 @@ const WelcomeSection = styled.div`
     }
   }
 
-   .image-container {
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+  .image-container {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
+  }
 `;
+
 const FeaturesSection = styled.section`
   margin-bottom: 6rem;
   text-align: center;
