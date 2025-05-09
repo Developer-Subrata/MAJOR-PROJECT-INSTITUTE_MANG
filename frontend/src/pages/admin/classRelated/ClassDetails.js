@@ -18,6 +18,10 @@ import SpeedDialTemplate from "../../../components/SpeedDialTemplate";
 import Popup from "../../../components/Popup";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import { Card, CardContent } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info';
+import { Button } from '@mui/material';
+
 
 const ClassDetails = () => {
     const params = useParams()
@@ -210,6 +214,61 @@ const ClassDetails = () => {
             </>
         )
     }
+    
+    
+
+    const AttractiveAddSubjectButton = ({ onClick }) => (                    //component of styling add subject button
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          <Button
+            onClick={onClick}
+            variant="contained"
+            sx={{
+              background: 'linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              px: 4,
+              py: 1.5,
+              borderRadius: '12px',
+              boxShadow: '0 3px 5px 2px rgba(33, 150, 243, .3)',
+              transition: '0.3s ease',
+              '&:hover': {
+                background: 'linear-gradient(45deg, #1565c0 30%, #1e88e5 90%)',
+              },
+            }}
+          >
+            ➕ Add Subjects 📚
+          </Button>
+        </Box>
+      );
+
+
+      const AttractiveAddStudentButton = ({ onClick }) => (                    //component of styling add student button
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          <Button
+            onClick={onClick}
+            variant="contained"
+            sx={{
+              background: 'linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              px: 4,
+              py: 1.5,
+              borderRadius: '12px',
+              boxShadow: '0 3px 5px 2px rgba(33, 150, 243, .3)',
+              transition: '0.3s ease',
+              '&:hover': {
+                background: 'linear-gradient(45deg, #1565c0 30%, #1e88e5 90%)',
+              },
+            }}
+          >
+            ➕ Add Students 👨‍🎓
+          </Button>
+        </Box>
+      );
+
+
 
     const ClassDetailsSection = () => {
         const numberOfSubjects = subjectsList.length;
@@ -217,33 +276,55 @@ const ClassDetails = () => {
 
         return (
             <>
-                <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                    This is Class {sclassDetails && sclassDetails.sclassName}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Subjects: {numberOfSubjects}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Students: {numberOfStudents}
-                </Typography>
+
+
+                <Card sx={{ maxWidth: 600, mx: "auto", mt: 4, p: 2, borderRadius: 3, boxShadow: 3 }} >
+                    <CardContent>
+                        <Box sx={{
+                            textAlign: 'center',
+                            mt: 4,
+                            mb: 4,
+                            position: 'relative',
+                        }}>
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    fontWeight: 'bold',
+                                    color: '#1976d2',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: 2,
+                                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                                    borderBottom: '4px solid #1976d2',
+                                    display: 'inline-block',
+                                    paddingBottom: '0.3rem',
+                                }}
+                            >
+                                <InfoIcon sx={{ fontSize: 45, mr: 1, verticalAlign: 'middle' }} />
+                                Class Details
+                            </Typography>
+                        </Box>
+                        <Typography variant="h5" gutterBottom>
+                            🎓 Class Name: {sclassDetails && sclassDetails.sclassName}
+                        </Typography>
+                        <Typography variant="h5" gutterBottom>
+                            📚   Subjects: {numberOfSubjects}
+                        </Typography>
+                        <Typography variant="h5" gutterBottom>
+                            👨‍🎓   Students: {numberOfStudents}
+                        </Typography>
+
+                    </CardContent>
+
+                </Card>
+
+
                 {getresponse &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/class/addstudents/" + classID)}
-                    >
-                        Add Students
-                    </GreenButton>
+                    <AttractiveAddStudentButton onClick={() => navigate("/Admin/addstudents/" + classID)} />
+                    
                 }
                 {response &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/addsubject/" + classID)}
-                    >
-                        Add Subjects
-                    </GreenButton>
+                    <AttractiveAddSubjectButton onClick={() => navigate("/Admin/addsubject/" + classID)} />
+
                 }
             </>
         );
