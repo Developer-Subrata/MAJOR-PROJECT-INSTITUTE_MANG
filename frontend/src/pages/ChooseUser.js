@@ -206,7 +206,7 @@ const ChooseUser = ({ visitor }) => {
   return (
     <StyledContainer>
       <HeaderBox>
-        <MainTitle variant="h2">Welcome to EduPortal</MainTitle>
+        <MainTitle variant="h2">Welcome to CampusCore</MainTitle>
         <Subtitle variant="h5">
           {visitor === "guest" ? "Explore as a guest" : "Please select your role to continue"}
         </Subtitle>

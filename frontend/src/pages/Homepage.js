@@ -364,7 +364,7 @@ const Homepage = () => {
             <Grid item xs={12} md={4}>
               <div className="footer-brand">
                 <Typography variant="h4" className="brand-name">
-                  InstitutePro
+                  CampusCore
                 </Typography>
                 <Typography variant="body2" className="brand-tagline">
                   Comprehensive solutions for modern educational institutions
