@@ -55,9 +55,9 @@ const StudentComplain = () => {
                     flex: '1 1 auto',
                     alignItems: 'center',
                     display: 'flex',
-                    justifyContent: 'center',
-                    height: '80vh',
-                    width: '100%',
+                    justifyContent:'center',
+                    height: '90vh',
+                    width: '80%',
                     backgroundColor: '#f5f5f5',
                     px: 2,
                     borderRadius: '30px'
@@ -73,7 +73,7 @@ const StudentComplain = () => {
                         sx={{
                             padding: 4,
                             maxWidth: 500,
-                            width: '100%',
+                            width: '200%',
                             borderRadius: '20px', // <-- Rounded corners
                         }}
                     >

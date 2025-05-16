@@ -132,18 +132,41 @@ const ViewStdAttendance = () => {
                     }
                     )}
                 </Table>
-                <div>
-                    Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
-                </div>
+                <Box
+                    sx={{
+                        mt:3,
+                        mx:'auto',
+                        maxWidth:1500,
+                        p:2,
+                        backgroundColor:'#f0f0f0',
+                        textAlign:'center',
+                        boxShadow:8,
+                        borderRadius:'center'
+                    }}
+                >
+                    <Typography variant="h6"> Overall Attendance Percentage </Typography>
+                    <Typography variant="h4" color={overallAttendancePercentage < 75 ? 'error' : 'primary'}>{overallAttendancePercentage.toFixed(2)}%</Typography>
+                </Box>
             </>
         )
     }
 
     const renderChartSection = () => {
         return (
-            <>
-                <CustomBarChart chartData={subjectData} dataKey="attendancePercentage" />
-            </>
+            <Box
+            sx={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
+                height:'80vh',
+                px:2,
+                maxWidth:'100%',
+            }}
+            >
+                <Box sx={{ width: '100%', maxWidth: 800 }}>
+                    <CustomBarChart chartData={subjectData} dataKey="attendancePercentage" />
+                </Box>
+            </Box>
         )
     };
 
