@@ -18,10 +18,10 @@ import { MdSchool, MdGroups, MdAssessment, MdChat } from 'react-icons/md';
 // Import diverse professional images
 import logo from '../assets/img2.png';
 import HeroImage from "../assets/classroom.png";
-import CampusImage from "../assets/institution-background1.png";
-import ClassroomImage from "../assets/backg.jpg";
-import TechImage from "../assets/classroom.png";
-import GraduationImage from "../assets/backg.jpg";
+import CampusImage from "../assets/system.jpg";
+import ClassroomImage from "../assets/streaming.jpeg";
+import TechImage from "../assets/learning.jpg";
+import GraduationImage from "../assets/success.avif";
 
 const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
