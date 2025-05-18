@@ -10,6 +10,7 @@ import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import { StyledTableCell, StyledTableRow } from '../../components/styles';
+import {Box} from '@mui/material';
 
 const StudentSubjects = () => {
 
@@ -34,7 +35,7 @@ const StudentSubjects = () => {
     }, [userDetails])
 
     useEffect(() => {
-        if (subjectMarks === []) {
+        if (subjectMarks.length === 0) {
             dispatch(getSubjectList(currentUser.sclassName._id, "ClassSubjects"));
         }
     }, [subjectMarks, dispatch, currentUser.sclassName._id]);
@@ -75,7 +76,19 @@ const StudentSubjects = () => {
     };
 
     const renderChartSection = () => {
-        return <CustomBarChart chartData={subjectMarks} dataKey="marksObtained" />;
+        return (
+            <Box
+            sx={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center',
+                minHeight:'80vh',
+                padddingBottom:'60px'
+            }}
+            >
+                <CustomBarChart chartData={subjectMarks} dataKey="marksObtained" />
+            </Box>
+        );
     };
 
     const renderClassDetailsSection = () => {
