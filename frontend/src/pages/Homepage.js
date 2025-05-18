@@ -21,7 +21,7 @@ import HeroImage from "../assets/classroom.png";
 import CampusImage from "../assets/system.jpg";
 import ClassroomImage from "../assets/streaming.jpeg";
 import TechImage from "../assets/learning.jpg";
-import GraduationImage from "../assets/success.jpg";
+import GraduationImage from "../assets/success.avif";
 
 const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
