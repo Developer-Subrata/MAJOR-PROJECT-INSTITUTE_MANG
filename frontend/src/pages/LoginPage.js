@@ -10,8 +10,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { LightPurpleButton } from '../components/buttonStyles';
 import styled from 'styled-components';
 import { loginUser } from '../redux/userRelated/userHandle';
-import Popup from '../components/Popup'; 
-import backgroundImage from'../assets/image.png'
+import Popup from '../components/Popup';
+import backgroundImage from '../assets/image.png'
 
 const customTheme = createTheme();
 
@@ -110,7 +110,7 @@ const LoginPage = ({ role }) => {
             <Box
                 sx={{
                     height: '100vh',
-                    backgroundImage:`url(${backgroundImage})`,
+                    backgroundImage: `url(${backgroundImage})`,
                     backgroundColor: '#210F37',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
@@ -118,7 +118,7 @@ const LoginPage = ({ role }) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    
+
 
                 }}
             >
@@ -127,7 +127,7 @@ const LoginPage = ({ role }) => {
                         <Typography variant="h4" gutterBottom sx={{ color: 'blue', fontWeight: 'bold' }}>
                             {role} Login
                         </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ color: 'black' }}>
+                        <Typography variant="subtitle1" gutterBottom sx={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>
                             Welcome back! Please enter your details
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -210,17 +210,17 @@ const LoginPage = ({ role }) => {
                                 sx={{
                                     mt: 3,
                                     borderRadius: "30px",
-                                  
+
                                     fontSize: '15px',
                                     textTransform: 'none',
-                                    py:1
+                                    py: 1.5
 
                                 }}
                             >
-                                {loader ? <CircularProgress size={24} color="inherit" /> : <span style={{fontWeight:"bold"}}>LOGIN</span>}
+                                {loader ? <CircularProgress size={24} color="inherit" /> : <span style={{ fontWeight: "bold" }}>LOGIN</span>}
                             </LightPurpleButton>
                             {role === "Admin" && (
-                                <Grid sx={{ mt: 1 }}>
+                                <Grid sx={{ mt: 2 }}>
                                     <Typography>Don't have an account?</Typography>
 
                                     <Box display="flex" justifyContent="center" mt={3}>
@@ -281,8 +281,8 @@ const RedLink = styled(Link)`
   color: red;
   text-decoration: none;
   font-weight: 500;
-  
 
+  
   &:hover {
     text-decoration: underline;
   }
