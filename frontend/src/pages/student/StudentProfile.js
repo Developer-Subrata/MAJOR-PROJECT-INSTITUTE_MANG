@@ -12,13 +12,13 @@ const StudentProfile = () => {
   const sclassName = currentUser.sclassName;
   const studentSchool = currentUser.school;
 
-  // const [selectedImage, setSelectedImage] = useState(null);
+
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
-      // setSelectedImage(file);
+      
       setPreviewUrl(URL.createObjectURL(file));
     }
   };
