@@ -79,6 +79,18 @@ const userSlice = createSlice({
         },
         toggleDarkMode: (state) => {
             state.darkMode = !state.darkMode;
+        },
+
+        updateProfilePhoto: (state, action) => {                                 // Redux reducer function
+            state.currentUser={                                                  // state is the current redux state and action.payload contains the new photo URL
+                ...state.currentUser,                                            // copies all existing user info like name, email, etc.
+                photoUrl: action.payload                                        //replaces (or adds) the photoUrl with the new one
+            };
+            localStorage.setItem('user',JSON.stringify(state.currentUser))    //This line saves the updated user (with new photo) to the browser's local storage.
+
+                                                                               
+            
+
         }
     },
 });
@@ -96,7 +108,8 @@ export const {
     getRequest,
     getFailed,
     getError,
-    toggleDarkMode
+    toggleDarkMode,
+    updateProfilePhoto
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

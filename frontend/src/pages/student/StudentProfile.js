@@ -1,106 +1,135 @@
-import React from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper } from '@mui/material';
+import { Typography, Grid, Box, Avatar, Container, Paper, Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 const StudentProfile = () => {
   const { currentUser, response, error } = useSelector((state) => state.user);
 
-  if (response) { console.log(response) }
-  else if (error) { console.log(error) }
+  if (response) console.log(response);
+  else if (error) console.log(error);
 
-  const sclassName = currentUser.sclassName
-  const studentSchool = currentUser.school
+  const sclassName = currentUser.sclassName;
+  const studentSchool = currentUser.school;
+
+  // const [selectedImage, setSelectedImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      // setSelectedImage(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
 
   return (
-    <>
-      <Container maxWidth="md">
-        <StyledPaper elevation={3}>
+    <CenteredBox>
+      <Container maxWidth="sm">
+        <StyledPaper elevation={4}>
           <Grid container spacing={2}>
+
+            {/* Avatar Section */}
             <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Avatar alt="Student Avatar" sx={{ width: 150, height: 150 }}>
-                  {String(currentUser.name).charAt(0)}
-                </Avatar>
-              </Box>
+              <GridItemBox>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                  <Avatar
+                    alt="Student Avatar"
+                    src={previewUrl || ''}
+                    sx={{ width: 120, height: 120, fontSize: 50 }}
+                  >
+                    {!previewUrl && String(currentUser.name).charAt(0)}
+                  </Avatar>
+                  <input
+                    accept="image/*"
+                    type="file"
+                    id="upload-avatar"
+                    style={{ display: 'none' }}
+                    onChange={handleImageChange}
+                  />
+                  <label htmlFor="upload-avatar">
+                    <Button
+                      variant="outlined"
+                      component="span"
+                      size="small"
+                      sx={{ mt: 1 }}
+                    >
+                      Choose Image
+                    </Button>
+                  </label>
+                </Box>
+              </GridItemBox>
             </Grid>
+
+            {/* Name */}
             <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Typography variant="h5" component="h2" textAlign="center">
+              <GridItemBox>
+                <Typography variant="h5" align="center" fontWeight="bold" gutterBottom>
                   {currentUser.name}
                 </Typography>
-              </Box>
+              </GridItemBox>
             </Grid>
+
+            {/* Roll Number */}
             <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Typography variant="subtitle1" component="p" textAlign="center">
-                  Student Roll No: {currentUser.rollNum}
+              <GridItemBox>
+                <Typography variant="h5" align="center" fontWeight="bold">
+                  Student Roll No : {currentUser.rollNum}
                 </Typography>
-              </Box>
+              </GridItemBox>
             </Grid>
+
+            {/* Class */}
             <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Typography variant="subtitle1" component="p" textAlign="center">
-                  Class: {sclassName.sclassName}
+              <GridItemBox>
+                <Typography variant="h5" align="center" fontWeight="bold">
+                  Class : {sclassName.sclassName}
                 </Typography>
-              </Box>
+              </GridItemBox>
             </Grid>
+
+            {/* School */}
             <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Typography variant="subtitle1" component="p" textAlign="center">
-                  School: {studentSchool.schoolName}
+              <GridItemBox>
+                <Typography variant="h5" align="center" fontWeight="bold">
+                  School : {studentSchool.schoolName}
                 </Typography>
-              </Box>
+              </GridItemBox>
             </Grid>
+
           </Grid>
         </StyledPaper>
-        <Card>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>
-              Personal Information
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Date of Birth:</strong> January 1, 2000
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Gender:</strong> Male
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Email:</strong> john.doe@example.com
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Phone:</strong> (123) 456-7890
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Address:</strong> 123 Main Street, City, Country
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Emergency Contact:</strong> (987) 654-3210
-                </Typography>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
       </Container>
-    </>
-  )
-}
+    </CenteredBox>
+  );
+};
 
-export default StudentProfile
+export default StudentProfile;
 
+// Styled Components
 const StyledPaper = styled(Paper)`
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+`;
+
+const CenteredBox = styled(Box)`
+  min-height: 90vh;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+`;
+
+const GridItemBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 `;
