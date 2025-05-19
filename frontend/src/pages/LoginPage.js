@@ -10,8 +10,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { LightPurpleButton } from '../components/buttonStyles';
 import styled from 'styled-components';
 import { loginUser } from '../redux/userRelated/userHandle';
-import Popup from '../components/Popup';
-import backgroundImage from '../assets/backg.jpg';
+import Popup from '../components/Popup'; 
+import backgroundImage from'../assets/image.png'
 
 const customTheme = createTheme();
 
@@ -74,18 +74,18 @@ const LoginPage = ({ role }) => {
         if (name === 'studentName') setStudentNameError(false);
     };
 
-    const guestModeHandler = () => {
-        const password = "zxc";
-        setGuestLoader(true);
+    // const guestModeHandler = () => {
+    //     const password = "zxc";
+    //     setGuestLoader(true);
 
-        if (role === "Admin") {
-            dispatch(loginUser({ email: "yogendra@12", password }, role));
-        } else if (role === "Student") {
-            dispatch(loginUser({ rollNum: "1", studentName: "Dipesh Awasthi", password }, role));
-        } else if (role === "Teacher") {
-            dispatch(loginUser({ email: "tony@12", password }, role));
-        }
-    };
+    //     if (role === "Admin") {
+    //         dispatch(loginUser({ email: "yogendra@12", password }, role));
+    //     } else if (role === "Student") {
+    //         dispatch(loginUser({ rollNum: "1", studentName: "Dipesh Awasthi", password }, role));
+    //     } else if (role === "Teacher") {
+    //         dispatch(loginUser({ email: "tony@12", password }, role));
+    //     }
+    // };
 
     useEffect(() => {
         if (status === 'success' || currentUser !== null) {
