@@ -11,6 +11,7 @@ import { LightPurpleButton } from '../components/buttonStyles';
 import styled from 'styled-components';
 import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
+import backgroundImage from '../assets/backg.jpg';
 
 const customTheme = createTheme();
 
@@ -109,6 +110,7 @@ const LoginPage = ({ role }) => {
             <Box
                 sx={{
                     height: '100vh',
+                    backgroundImage:`url(${backgroundImage})`,
                     backgroundColor: '#210F37',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
@@ -116,7 +118,7 @@ const LoginPage = ({ role }) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-
+                    
 
                 }}
             >
@@ -125,7 +127,7 @@ const LoginPage = ({ role }) => {
                         <Typography variant="h4" gutterBottom sx={{ color: 'blue', fontWeight: 'bold' }}>
                             {role} Login
                         </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ color: 'green' }}>
+                        <Typography variant="subtitle1" gutterBottom sx={{ color: 'black' }}>
                             Welcome back! Please enter your details
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -196,44 +198,57 @@ const LoginPage = ({ role }) => {
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"
                                 />
-                                <StyledLink to="/forgot-password">
+                                <RedLink to="/forgot-password" >
                                     Forgot password?
-                                </StyledLink>
+                                </RedLink>
                             </Grid>
+                            {/* LOGIN BUTTON */}
                             <LightPurpleButton
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3 }}
+                                sx={{
+                                    mt: 3,
+                                    borderRadius: "30px",
+                                  
+                                    fontSize: '15px',
+                                    textTransform: 'none',
+                                    py:1
+
+                                }}
                             >
-                                {loader ? <CircularProgress size={24} color="inherit" /> : "Login"}
+                                {loader ? <CircularProgress size={24} color="inherit" /> : <span style={{fontWeight:"bold"}}>LOGIN</span>}
                             </LightPurpleButton>
                             {role === "Admin" && (
-                                <Grid >
+                                <Grid sx={{ mt: 1 }}>
                                     <Typography>Don't have an account?</Typography>
-                                    <Button
-                                        variant='outlined'
-                                        sx={{
-                                            mt: 2,
-                                            mb: 3,
-                                            px: 3,
-                                            py: 1.5,
-                                            color: 'blanchedalmond',
-                                            borderColor: 'blanchedalmond',
-                                            borderRadius: '30px',
-                                            textTransform: 'none',
-                                            fontSize: '16px',
-                                            transition: 'all 0.3s ease',
-                                            '&:hover': {
-                                                backgroundColor: '#7C4585',
-                                                color: '#333',
-                                                borderColor: '#309898',
-                                            },
-                                        }}>
-                                        <StyledLink to="/Adminregister" >
-                                            SIGNUP
-                                        </StyledLink>
-                                    </Button>
+
+                                    <Box display="flex" justifyContent="center" mt={3}>
+                                        <Button
+                                            variant="contained"
+                                            sx={{
+                                                width: '100%', // Adjust as needed 
+                                                py: 1.5,
+                                                borderRadius: '30px',
+                                                backgroundColor: '#7f56da',
+                                                color: '#fff',
+                                                fontWeight: 'bold',
+                                                fontSize: '15px',
+                                                textTransform: 'none',
+                                                boxShadow: '0 4px 20px rgba(127, 86, 218, 0.4)',
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    backgroundColor: '#5e3dbf',
+                                                    boxShadow: '0 6px 24px rgba(94, 61, 191, 0.4)',
+                                                },
+                                            }}
+                                        >
+                                            <StyledLink to="/Adminregister">
+                                                SIGN UP
+                                            </StyledLink>
+                                        </Button>
+                                    </Box>
+
                                 </Grid>
                             )}
                         </Box>
@@ -254,8 +269,21 @@ const LoginPage = ({ role }) => {
 
 export default LoginPage;
 
+
 const StyledLink = styled(Link)`
-  margin-top: 9px;
   text-decoration: none;
-  color: #7f56da;
+  color: inherit;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+const RedLink = styled(Link)`
+  color: red;
+  text-decoration: none;
+  font-weight: 500;
+  
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
