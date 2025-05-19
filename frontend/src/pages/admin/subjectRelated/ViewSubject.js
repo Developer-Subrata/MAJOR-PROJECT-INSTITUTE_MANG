@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { getClassStudents, getSubjectDetails } from '../../../redux/sclassRelated/sclassHandle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
+import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper, Card, CardContent, Grid, Avatar } from '@mui/material';
 import { BlueButton, GreenButton, PurpleButton } from '../../../components/buttonStyles';
+import { Book, Code, CalendarToday, People, School, Person } from '@mui/icons-material';
 import TableTemplate from '../../../components/TableTemplate';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -144,37 +145,60 @@ const ViewSubject = () => {
   const SubjectDetailsSection = () => {
     const numberOfStudents = sclassStudents.length;
 
+    const details = [
+      {label: "Subject Name", value: subjectDetails?.subName, icon: <Book /> },
+      {label: "Subject Code", value: subjectDetails?.subCodede, icon: <Code />},
+      {label: "Subject Sessions", value: subjectDetails?.sessions, icon: <CalendarToday />},
+      {label: "Number of Students", value: numberOfStudents, icon: <People />},
+      {label: "Class Name", value: subjectDetails?.sclassName?.sclassName, icon: <School />},
+      {label: "Teacher Name", value: subjectDetails?.teacher?.name, icon: <Person />},
+
+
+    ];
+
     return (
-      <>
+      <Box sx={{ p:4 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Subject Details
+          📚 Subject Details
         </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Name : {subjectDetails && subjectDetails.subName}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Code : {subjectDetails && subjectDetails.subCode}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Sessions : {subjectDetails && subjectDetails.sessions}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Number of Students: {numberOfStudents}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Class Name : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
-        </Typography>
-        {subjectDetails && subjectDetails.teacher ?
-          <Typography variant="h6" gutterBottom>
-            Teacher Name : {subjectDetails.teacher.name}
-          </Typography>
-          :
-          <GreenButton variant="contained"
-            onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
-            Add Subject Teacher
-          </GreenButton>
-        }
-      </>
+
+        <Grid container spacing={3} justifyContent="center">
+          {details.map((item, index) => (
+            item.value ? (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <card sx={{ borderRadius: 3, boxShadow: 4}}>
+                   <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                     <Avatar sx={{ bgcolor: '#1976d2' }}>
+                       {item.icon}
+                     </Avatar>
+                     
+                     <Box>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        {item.label}
+                      </Typography>
+                      <Typography variant="body1" fontWeight="bold">
+                        {item.value}
+                      </Typography>
+                     </Box>
+                    </CardContent>
+
+                </card>
+              </Grid>
+            ) : null
+           ))}
+        </Grid>
+
+        {!subjectDetails?.teacher && (
+          <Box sx={{ textAlign: 'center', mt: 4 }}>
+            <GreenButton variant="contained"
+              onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
+              Add Subject Teacher
+            </GreenButton>
+          </Box>
+        )}
+
+
+      </Box>
     );
   }
 

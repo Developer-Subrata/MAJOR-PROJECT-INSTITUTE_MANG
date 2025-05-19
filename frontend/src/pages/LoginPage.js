@@ -196,7 +196,7 @@ const LoginPage = ({ role }) => {
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"
                                 />
-                                <StyledLink to="/forgot-password">
+                                <StyledLink to="/request-otp">
                                     Forgot password?
                                 </StyledLink>
                             </Grid>

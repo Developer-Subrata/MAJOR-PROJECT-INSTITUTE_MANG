@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const {forgotPassword}=require("../controllers/forgotPassword.js")
-const {resetPassword}= require("../controllers/resetPassword.js")
+const express = require('express');
+const router = express.Router();
+const authController = require("../controllers/auth-controller.js")
 const {uploadProfilePhoto}= require('../controllers/upload-controller.js')
 const upload = require('../middlewares/multer')
 
@@ -30,8 +30,9 @@ const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, d
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
 //forgot-password
-router.post('/forgot-password', forgotPassword);
-router.post('/reset-password/:token', resetPassword);
+router.post("/request-otp", authController.requestOTP);
+router.post("/verify-otp", authController.verifyOTP);
+router.post("/reset-password", authController.resetPassword);
 
 
 // Admin

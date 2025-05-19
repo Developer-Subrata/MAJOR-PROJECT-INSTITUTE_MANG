@@ -8,8 +8,9 @@ import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import LoginPage from './pages/LoginPage';
 import AdminRegisterPage from './pages/admin/AdminRegisterPage';
 import ChooseUser from './pages/ChooseUser';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
+import RequestOTP from "./pages/admin/forgot/RequestOTP";
+import VerifyOTP from "./pages/admin/forgot/VerifyOTP";
+import ResetPassword from "./pages/admin/forgot/ResetPassword";
 
 const App = () => {
   const { currentRole } = useSelector(state => state.user);
@@ -27,10 +28,11 @@ const App = () => {
           <Route path="/Studentlogin" element={<LoginPage role="Student" />} />
           <Route path="/Teacherlogin" element={<LoginPage role="Teacher" />} />
 
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} /> 
-console.log("ssssss");
-console.log("5566565")
+          <Route path="/request-otp" element={<RequestOTP />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          console.log("ssssss");
+          console.log("5566565")
 
           <Route path="/Adminregister" element={<AdminRegisterPage />} />
 
