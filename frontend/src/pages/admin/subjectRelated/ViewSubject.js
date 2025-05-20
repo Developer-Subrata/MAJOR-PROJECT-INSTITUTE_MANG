@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getClassStudents, getSubjectDetails } from '../../../redux/sclassRelated/sclassHandle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper, Card, CardContent, Grid, Avatar } from '@mui/material';
+import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper, Card, CardContent, Grid, Avatar, Button} from '@mui/material';
 import { BlueButton, GreenButton, PurpleButton } from '../../../components/buttonStyles';
 import { Book, Code, CalendarToday, People, School, Person } from '@mui/icons-material';
 import TableTemplate from '../../../components/TableTemplate';
@@ -142,6 +142,35 @@ const ViewSubject = () => {
     )
   }
 
+
+
+  const AttractiveAddSubjectTeacherButton = ({ onClick }) => (                    //component of styling add student button
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          <Button
+            onClick={onClick}
+            variant="contained"
+            sx={{
+              background: 'linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              px: 4,
+              py: 1.5,
+              borderRadius: '12px',
+              boxShadow: '0 3px 5px 2px rgba(33, 150, 243, .3)',
+              transition: '0.3s ease',
+              '&:hover': {
+                background: 'linear-gradient(45deg, #1565c0 30%, #1e88e5 90%)',
+              },
+            }}
+          >
+            ➕ Add Subject Teacher 👨‍🏫
+          </Button>
+        </Box>
+      );
+
+
+
   const SubjectDetailsSection = () => {
     const numberOfStudents = sclassStudents.length;
 
@@ -189,12 +218,10 @@ const ViewSubject = () => {
         </Grid>
 
         {!subjectDetails?.teacher && (
-          <Box sx={{ textAlign: 'center', mt: 4 }}>
-            <GreenButton variant="contained"
-              onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
-              Add Subject Teacher
-            </GreenButton>
-          </Box>
+          <AttractiveAddSubjectTeacherButton
+              onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)} />
+              
+         
         )}
 
 
