@@ -46,7 +46,7 @@ const StudentSubjects = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                minHeight: '80vh',
+                minHeight: '60vh',
                 padding: 2,
             }}
         >
@@ -57,8 +57,9 @@ const StudentSubjects = () => {
                     padding: 5,
                     boxShadow: 5,
                     backgroundColor: '#fff',
-                    width: '200%',
-                    maxWidth: '600px',
+                    height:'100%',
+                    width: '100%',
+                    maxWidth: '900px',
                 }}
             >
                 {children}
@@ -68,7 +69,7 @@ const StudentSubjects = () => {
 
     const renderTableSection = () => (
         <WrapperBox>
-            <Typography variant="h5" align="center" gutterBottom fontWeight="bold">
+            <Typography variant="h5" align="center" gutterBottom="bold" fontWeight="bold">
                 Subject Marks
             </Typography>
             <Table>
@@ -95,7 +96,7 @@ const StudentSubjects = () => {
 
     const renderChartSection = () => (
         <WrapperBox>
-            <Typography variant="h5" align="center" gutterBottom fontWeight="bold">
+            <Typography variant="h5" align="center" fontWeight="bold" height='100%' width='100%'>
                 Marks Chart
             </Typography>
             <CustomBarChart chartData={subjectMarks} dataKey="marksObtained" />
@@ -108,7 +109,7 @@ const StudentSubjects = () => {
                 Class Details
             </Typography>
             <Typography variant="h6" gutterBottom fontWeight="bold">
-                You are currently in Class: {sclassDetails && sclassDetails.sclassName}
+                Class: {sclassDetails && sclassDetails.sclassName}
             </Typography>
             <Typography variant="h6" gutterBottom fontWeight="bold">
                 Subjects:
