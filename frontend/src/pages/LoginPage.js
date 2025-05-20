@@ -198,7 +198,7 @@ const LoginPage = ({ role }) => {
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"
                                 />
-                                <RedLink to="/forgot-password" >
+                                <RedLink to="/request-otp">
                                     Forgot password?
                                 </RedLink>
                             </Grid>

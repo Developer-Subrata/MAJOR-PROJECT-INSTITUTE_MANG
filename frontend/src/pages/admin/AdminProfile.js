@@ -179,6 +179,8 @@ const AdminProfile = () => {
     document.getElementById("fileInput").click();
   };
 
+  const API_BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
   const handleUpload = async () => {
     if (!file) return alert("Please select an image first.");
@@ -189,7 +191,7 @@ const AdminProfile = () => {
     try {
       const adminId = currentUser._id; //get admin id here
 
-      const res = await fetch(`http://localhost:5000/upload-avatar/${adminId}`, {
+      const res = await fetch(`${API_BASE_URL}/upload-avatar/${adminId}`, {
         method: "POST",
         body: formData,
       });
