@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getClassStudents, getSubjectDetails } from '../../../redux/sclassRelated/sclassHandle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper, Card, CardContent, Grid, Avatar, Button} from '@mui/material';
+import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper, CardContent, Grid, Avatar, Button} from '@mui/material';
 import { BlueButton, GreenButton, PurpleButton } from '../../../components/buttonStyles';
 import { Book, Code, CalendarToday, People, School, Person } from '@mui/icons-material';
 import TableTemplate from '../../../components/TableTemplate';
