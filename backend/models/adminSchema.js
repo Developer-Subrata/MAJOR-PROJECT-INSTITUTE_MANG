@@ -14,6 +14,11 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    otp: {
+        type: String,
+    },
+
+    otpExpires: Date,
     role: {
         type: String,
         default: "Admin"
@@ -22,6 +27,10 @@ const adminSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true
+    },
+    profilePhoto: {
+        type: String,
+        default: ""
     }
 });
 

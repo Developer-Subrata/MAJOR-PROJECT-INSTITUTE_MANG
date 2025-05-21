@@ -15,8 +15,12 @@ const AccountMenu = () => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
+
         setAnchorEl(null);
     };
+
+    
+
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -29,9 +33,13 @@ const AccountMenu = () => {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>
-                            {String(currentUser.name).charAt(0)}
+                        <Avatar
+                            sx={{ width: 32, height: 32 }}
+                            src={currentUser?.profilePhoto || undefined}
+                        >
+                            {!currentUser?.profilePhoto && String(currentUser?.name || "").charAt(0).toUpperCase()}
                         </Avatar>
+
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -49,7 +57,12 @@ const AccountMenu = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem>
-                    <Avatar />
+                    <Avatar
+                        src={currentUser?.profilePhoto || undefined}
+                    >
+                        {(!currentUser?.profilePhoto || currentUser?.profilePhoto === "") &&
+                            String(currentUser?.name || "").charAt(0).toUpperCase()}
+                    </Avatar>
                     <Link to={`/${currentRole}/profile`}>
                         Profile
                     </Link>

@@ -1,4 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { authSuccess, updateProfilePhoto } from "../../redux/userRelated/userSlice";
+import { FiEdit2 } from 'react-icons/fi';
+
+
 import styled, { keyframes } from 'styled-components';
 
 // Animations
@@ -41,6 +46,59 @@ const ProfileHeader = styled.h2`
     border-radius: 2px;
   }
 `;
+
+
+const Avatar = styled.div`
+  width: 100px;
+  height: 100px;
+  background: #4facfe;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+
+  
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+   
+   
+
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  padding: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+`;
+
+
+
+
 
 const ProfileDetail = styled.div`
   background: white;
@@ -92,7 +150,63 @@ const EditButton = styled.button`
 `;
 
 const AdminProfile = () => {
+
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (currentUser.profilePhoto) {
+      setPreview(currentUser.profilePhoto);
+    }
+  }, [currentUser.profilePhoto]);
+
+
+
+
+
+  const [preview, setPreview] = useState(currentUser.profilePhoto || "");
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (selected) {
+      setFile(selected);
+      setPreview(URL.createObjectURL(selected));
+    }
+  };
+
+  const openFileDialog = () => {
+    document.getElementById("fileInput").click();
+  };
+
+  const API_BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+  const handleUpload = async () => {
+    if (!file) return alert("Please select an image first.");
+
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      const adminId = currentUser._id; //get admin id here
+
+      const res = await fetch(`${API_BASE_URL}/upload-avatar/${adminId}`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      dispatch(updateProfilePhoto(data.url));
+      dispatch(authSuccess(data.admin))
+
+      alert("Profile picture updated!");
+    } catch (err) {
+      console.error("upload error", err);
+      alert("Upload failed");
+    }
+  };
+
 
   if (!currentUser) {
     return <ProfileContainer>Loading profile...</ProfileContainer>;
@@ -100,23 +214,47 @@ const AdminProfile = () => {
 
   return (
     <ProfileContainer>
+      <Avatar>
+        {preview ? (
+          <img src={preview} alt="Avatar" />
+        ) : (
+          currentUser.name.charAt(0)
+        )}
+
+        <IconWrapper onClick={openFileDialog}>
+          <FiEdit2 size={16} />
+
+        </IconWrapper>
+      </Avatar>
+
+      <input
+        type="file"
+        accept="image/*"
+        id="fileInput"
+        style={{ display: "none" }}
+        onChange={handleFileChange} />
+
+      <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        <EditButton onClick={handleUpload}>Upload Photo</EditButton>
+      </div>
+
       <ProfileHeader>Admin Profile</ProfileHeader>
-      
+
       <ProfileDetail>
         <DetailLabel>Name:</DetailLabel>
         <DetailValue>{currentUser.name}</DetailValue>
       </ProfileDetail>
-      
+
       <ProfileDetail>
         <DetailLabel>Email:</DetailLabel>
         <DetailValue>{currentUser.email}</DetailValue>
       </ProfileDetail>
-      
+
       <ProfileDetail>
         <DetailLabel>School:</DetailLabel>
         <DetailValue>{currentUser.schoolName}</DetailValue>
       </ProfileDetail>
-      
+
       <EditButton>Edit Profile</EditButton>
     </ProfileContainer>
   );

@@ -1,6 +1,8 @@
-const router = require('express').Router();
-const {forgotPassword}=require("../controllers/forgotPassword.js")
-const {resetPassword}= require("../controllers/resetPassword.js")
+const express = require('express');
+const router = express.Router();
+const authController = require("../controllers/auth-controller.js")
+const {uploadProfilePhoto}= require('../controllers/upload-controller.js')
+const upload = require('../middlewares/multer')
 
 // const { adminRegister, adminLogIn, deleteAdmin, getAdminDetail, updateAdmin } = require('../controllers/admin-controller.js');
 
@@ -28,13 +30,18 @@ const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, d
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
 //forgot-password
-router.post('/forgot-password', forgotPassword);
-router.post('/reset-password/:token', resetPassword);
+router.post("/request-otp", authController.requestOTP);
+router.post("/verify-otp", authController.verifyOTP);
+router.post("/reset-password", authController.resetPassword);
 
 
 // Admin
 router.post('/AdminReg', adminRegister);
 router.post('/AdminLogin', adminLogIn);
+router.post('/upload-avatar/:id', upload.single("avatar"), uploadProfilePhoto)
+  
+ 
+
 
 router.get("/Admin/:id", getAdminDetail)
 // router.delete("/Admin/:id", deleteAdmin)

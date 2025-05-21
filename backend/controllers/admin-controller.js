@@ -86,23 +86,25 @@ const adminRegister = async (req, res) => {
 
 
 const adminLogIn = async (req, res) => {
-    if (req.body.email && req.body.password) {
-        let admin = await Admin.findOne({ email: req.body.email });
-        if (admin) {
-            const isMatch = await bcrypt.compare(req.body.password, admin.password);
-            if (isMatch) {
-                admin.password = undefined;
-                res.send(admin);
-            } else {
-                res.send({ message: "Invalid password" });
-            }
-        } else {
-            res.send({ message: "User not found" });
-        }
+  if (req.body.email && req.body.password) {
+    let admin = await Admin.findOne({ email: req.body.email });
+    if (admin) {
+      const isMatch = await bcrypt.compare(req.body.password, admin.password);
+      if (isMatch) {
+        admin.password = undefined;  // ✅ Good: don't send password back
+        res.send(admin);
+      } else {
+        res.send({ message: "Invalid password" });
+      }
     } else {
-        res.send({ message: "Email and password are required" });
+      res.send({ message: "User not found" });
     }
+  } else {
+    res.send({ message: "Email and password are required" });
+  }
 };
+
+
 
 const getAdminDetail = async (req, res) => {
     try {

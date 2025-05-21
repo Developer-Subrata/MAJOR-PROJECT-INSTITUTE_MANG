@@ -110,7 +110,7 @@ const AdminRegisterPage = () => {
                     <Fade in={checked} timeout={800}>
                         <Box
                             sx={{
-                                my: 8,
+                                my: 4,
                                 mx: 4,
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -120,7 +120,7 @@ const AdminRegisterPage = () => {
                             <Typography variant="h4" sx={{ mb: 2, color: "#2c2143", fontWeight: 'bold' }}>
                                 Admin Register
                             </Typography>
-                            <Typography variant="subtitle1" sx={{ color: '#666', textAlign: 'center', mb: 4 }}>
+                            <Typography variant="subtitle1" sx={{ color: '#666', textAlign: 'center', mb: 4, fontWeight: 'bold' }}>
                                 Create your own school by registering as an admin.
                                 <br />
                                 You will be able to add students and faculty and
@@ -209,7 +209,7 @@ const AdminRegisterPage = () => {
                                         fontSize: '1rem',
                                         fontWeight: 'bold',
                                         textTransform: 'none',
-                                        borderRadius: '8px',
+                                        borderRadius: '30px',
                                         boxShadow: '0 2px 10px rgba(127, 86, 218, 0.2)',
                                         '&:hover': {
                                             boxShadow: '0 4px 12px rgba(127, 86, 218, 0.3)',
