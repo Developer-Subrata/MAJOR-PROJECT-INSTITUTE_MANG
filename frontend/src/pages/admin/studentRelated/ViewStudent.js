@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, getUserDetails, updateUser } from '../../../redux/userRelated/userHandle';
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSubjectList } from '../../../redux/sclassRelated/sclassHandle';
-import { Box, Button, Collapse, IconButton, Table, TableBody, TableHead, Typography, Tab, Paper, BottomNavigation, BottomNavigationAction, Container } from '@mui/material';
+import { Box, Button, Collapse, IconButton, Table, TableBody, TableHead, Typography, Tab, Paper, BottomNavigation, BottomNavigationAction, Container, Card, CardContent, Divider, Stack } from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { KeyboardArrowUp, KeyboardArrowDown, Delete as DeleteIcon } from '@mui/icons-material';
+import { KeyboardArrowUp, KeyboardArrowDown,  } from '@mui/icons-material';
 import { removeStuff, updateStudentFields } from '../../../redux/studentRelated/studentHandle';
 import { calculateOverallAttendancePercentage, calculateSubjectAttendancePercentage, groupAttendanceBySubject } from '../../../components/attendanceCalculator';
 import CustomBarChart from '../../../components/CustomBarChart'
@@ -19,6 +19,15 @@ import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import Popup from '../../../components/Popup';
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import SchoolIcon from '@mui/icons-material/School';
+import PersonIcon from '@mui/icons-material/Person';
+import ClassIcon from '@mui/icons-material/Class';
+import BadgeIcon from '@mui/icons-material/Badge';
+
+
+
 
 const ViewStudent = () => {
     const [showTab, setShowTab] = useState(false);
@@ -341,24 +350,71 @@ const ViewStudent = () => {
 
     const StudentDetailsSection = () => {
         return (
-            <div>
-                Name: {userDetails.name}
-                <br />
-                Roll Number: {userDetails.rollNum}
-                <br />
-                Class: {sclassName.sclassName}
-                <br />
-                School: {studentSchool.schoolName}
-                {
-                    subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
-                        <CustomPieChart data={chartData} />
-                    )
-                }
-                <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
-                    Delete
-                </Button>
-                <br />
-                {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
+            <Box sx={{ p: 3 }}>
+                <Card elevation={3} sx={{ maxWidth: 600, margin: 'auto', borderRadius: 3 }}>
+                    <CardContent>
+                        <Typography variant="h5" gutterBottom sx={{color: "#1976d2", textAlign: "center", fontWeight: "bold", textTransform: 'uppercase',
+                                    
+                                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',}}>
+                            <PersonIcon sx={{ verticalAlign: 'middle', mr: 1 }} />
+                            Student Details
+                        </Typography>
+                        <Divider sx={{ mb: 2 }} />
+
+                        <Stack spacing={1}>
+                            <Typography variant="body1">
+                                {/* <BadgeIcon fontSize="small" sx={{ mr: 1 }} /> */}
+                                <strong> 👨‍🎓 Name:</strong> {userDetails.name}
+                            </Typography>
+
+                            <Typography variant="body1">
+                                {/* <BadgeIcon fontSize="small" sx={{ mr: 1 }} /> */}
+                                <strong>📚 Roll Number:</strong> {userDetails.rollNum}
+                            </Typography>
+
+                            <Typography variant="body1">
+                                {/* <ClassIcon fontSize="small" sx={{ mr: 1 }} /> */}
+                                <strong>🎓 Class:</strong> {sclassName.sclassName}
+                            </Typography>
+
+                            <Typography variant="body1">
+                                {/* <SchoolIcon fontSize="small" sx={{ mr: 1 }} /> */}
+                                <strong> 🏫 School:</strong> {studentSchool.schoolName}
+                            </Typography>
+                        </Stack>
+
+                        {subjectAttendance &&
+                            Array.isArray(subjectAttendance) &&
+                            subjectAttendance.length > 0 && (
+                                <Box sx={{ mt: 3 }}>
+                                    <CustomPieChart data={chartData} />
+                                </Box>
+                            )}
+
+                        <Button
+                          variant="contained"
+                          color="error"
+                          startIcon={<DeleteIcon />}
+                          sx={{ mt: 3, px: 3, py: 1 }}
+                          onClick={deleteHandler}
+                        >
+                            Delete
+                        </Button>
+                    </CardContent>
+                </Card>
+            </Box>
+
+
+
+
+
+
+
+
+
+
+                        
+                        /* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
                     {
                         showTab
                             ? <KeyboardArrowUp />
@@ -391,48 +447,48 @@ const ViewStudent = () => {
                             <button className="registerButton" type="submit" >Update</button>
                         </form>
                     </div>
-                </Collapse> */}
-            </div>
+                </Collapse> */
+                    
         )
     }
 
-    return (
-        <>
-            {loading
-                ?
-                <>
-                    <div>Loading...</div>
-                </>
-                :
-                <>
-                    <Box sx={{ width: '100%', typography: 'body1', }} >
-                        <TabContext value={value}>
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
-                                    <Tab label="Details" value="1" />
-                                    <Tab label="Attendance" value="2" />
-                                    <Tab label="Marks" value="3" />
-                                </TabList>
-                            </Box>
-                            <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
-                                <TabPanel value="1">
-                                    <StudentDetailsSection />
-                                </TabPanel>
-                                <TabPanel value="2">
-                                    <StudentAttendanceSection />
-                                </TabPanel>
-                                <TabPanel value="3">
-                                    <StudentMarksSection />
-                                </TabPanel>
-                            </Container>
-                        </TabContext>
-                    </Box>
-                </>
-            }
-            <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
+return (
+    <>
+        {loading
+            ?
+            <>
+                <div>Loading...</div>
+            </>
+            :
+            <>
+                <Box sx={{ width: '100%', typography: 'body1', }} >
+                    <TabContext value={value}>
+                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                            <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
+                                <Tab label="Details" value="1" />
+                                <Tab label="Attendance" value="2" />
+                                <Tab label="Marks" value="3" />
+                            </TabList>
+                        </Box>
+                        <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
+                            <TabPanel value="1">
+                                <StudentDetailsSection />
+                            </TabPanel>
+                            <TabPanel value="2">
+                                <StudentAttendanceSection />
+                            </TabPanel>
+                            <TabPanel value="3">
+                                <StudentMarksSection />
+                            </TabPanel>
+                        </Container>
+                    </TabContext>
+                </Box>
+            </>
+        }
+        <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
 
-        </>
-    )
+    </>
+)
 }
 
 export default ViewStudent

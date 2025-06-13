@@ -31,17 +31,27 @@ const TeacherProfile = () => {
 export default TeacherProfile
 
 const ProfileCard = styled(Card)`
-  margin: 20px;
-  width: 400px;
-  border-radius: 10px;
+  padding: 90px;
+  border-radius: 30px;
+  background-color:rgb(173, 85, 85);
+  box-shadow: 0px 8px 30px rgba(65, 52, 205, 0.59);
 `;
 
 const ProfileCardContent = styled(CardContent)`
-  display: flex;
-  flex-direction: column;
+  min-height: 70vh;
+  border-radius: 30px;
+  justify-content: center;
   align-items: center;
+  background-color: #f5f5f5;
 `;
 
 const ProfileText = styled(Typography)`
-  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  background-color:rgb(197, 214, 137);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 `;
